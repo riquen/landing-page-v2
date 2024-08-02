@@ -53,13 +53,13 @@ const Carousel = React.forwardRef<
   const [canScrollPrev, setCanScrollPrev] = React.useState(false)
   const [canScrollNext, setCanScrollNext] = React.useState(false)
 
-  const onSelect = React.useCallback((carouselApi: CarouselApi) => {
-    if (!carouselApi) {
+  const onSelect = React.useCallback((api: CarouselApi) => {
+    if (!api) {
       return
     }
 
-    setCanScrollPrev(carouselApi.canScrollPrev())
-    setCanScrollNext(carouselApi.canScrollNext())
+    setCanScrollPrev(api.canScrollPrev())
+    setCanScrollNext(api.canScrollNext())
   }, [])
 
   const scrollPrev = React.useCallback(() => {
@@ -105,31 +105,29 @@ const Carousel = React.forwardRef<
     }
   }, [api, onSelect])
 
-  const value = React.useMemo(
-    () => ({
-      carouselRef,
-      api: api,
-      opts,
-      orientation: orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
-      scrollPrev,
-      scrollNext,
-      canScrollPrev,
-      canScrollNext,
-    }),
-    [api, canScrollNext, canScrollPrev, carouselRef, opts, orientation, scrollNext, scrollPrev],
-  )
-
   return (
-    <CarouselContext.Provider value={value}>
-      <section
+    <CarouselContext.Provider
+      value={{
+        carouselRef,
+        api: api,
+        opts,
+        orientation: orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
+        scrollPrev,
+        scrollNext,
+        canScrollPrev,
+        canScrollNext,
+      }}
+    >
+      <div
         ref={ref}
         onKeyDownCapture={handleKeyDown}
         className={cn('relative', className)}
+        role="region"
         aria-roledescription="carousel"
         {...props}
       >
         {children}
-      </section>
+      </div>
     </CarouselContext.Provider>
   )
 })
@@ -161,8 +159,9 @@ const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
     const { orientation } = useCarousel()
 
     return (
-      <section
+      <div
         ref={ref}
+        role="group"
         aria-roledescription="slide"
         className={cn(
           'min-w-0 shrink-0 grow-0 basis-full',
