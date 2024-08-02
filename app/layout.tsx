@@ -1,11 +1,21 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Montserrat, Open_Sans } from 'next/font/google'
 
 import './globals.css'
 
 import { Header } from '@/components/Header'
 
-const inter = Inter({ subsets: ['latin'] })
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-montserrat',
+})
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-open-sans',
+})
 
 export const metadata: Metadata = {
   title: 'Landing Page v2',
@@ -19,10 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="antialiased">
-      <body className={inter.className}>
+      <body className={`${montserrat.variable} ${openSans.variable}`}>
         <Header />
-        {/* testar pt apos o title */}
-        <main className="min-h-screen px-4 pb-6 pt-[90px] text-sm">{children}</main>
+        <main className="min-h-screen flex px-4">{children}</main>
       </body>
     </html>
   )

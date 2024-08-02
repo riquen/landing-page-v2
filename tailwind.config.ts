@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        montserrat: ['var(--font-montserrat)'],
+        'open-sans': ['var(--font-open-sans)'],
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

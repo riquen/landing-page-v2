@@ -1,4 +1,5 @@
 'use client'
+
 import Link from 'next/link'
 import {
   LuTowerControl,
@@ -27,14 +28,15 @@ export const Header = () => {
     <Collapsible className="fixed left-0 right-0 top-0 z-20 flex flex-col gap-3 bg-sky-200 p-4 data-[state=open]:bottom-0 data-[state=closed]:border-b-2 data-[state=closed]:border-neutral-300">
       <div className="flex justify-between">
         <Link href="/" className="flex outline-none">
-          {/* testar tamanho dos icones em prd */}
-          <LuTowerControl className="w-8 h-8" />
-          {isHome ? <LuPlaneTakeoff className="w-8 h-8" /> : <LuPlaneLanding className="w-8 h-8" />}
+          <LuTowerControl className="w-8 h-8 stroke-slate-950" />
+          {isHome ? (
+            <LuPlaneTakeoff className="w-8 h-8 stroke-slate-950" />
+          ) : (
+            <LuPlaneLanding className="w-8 h-8 stroke-slate-950" />
+          )}
         </Link>
         <CollapsibleTrigger className="outline-none" asChild>
-          <button>
-            <LuMenu className="w-8 h-8" />
-          </button>
+          <LuMenu className="w-8 h-8 stroke-slate-950" />
         </CollapsibleTrigger>
       </div>
       <CollapsibleContent className="data-[state=closed]:hidden" forceMount>

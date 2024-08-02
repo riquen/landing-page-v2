@@ -1,4 +1,5 @@
 'use client'
+
 import Image from 'next/image'
 import Autoplay from 'embla-carousel-autoplay'
 
@@ -14,8 +15,8 @@ export default function Carousel({ carouselImages }: Readonly<CarouselProps>) {
     <CarouselUI opts={{ loop: true }} plugins={[Autoplay({ delay: 5000 })]} className="">
       <CarouselContent>
         {carouselImages.map(({ url, alt }) => (
-          <CarouselItem key={url}>
-            <Image src={url} alt={alt} width={800} height={600} />
+          <CarouselItem key={url} className="flex">
+            <Image src={url} alt={alt} width={800} height={600} priority />
           </CarouselItem>
         ))}
       </CarouselContent>
