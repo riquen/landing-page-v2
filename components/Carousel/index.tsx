@@ -12,11 +12,11 @@ type CarouselProps = {
 
 export default function Carousel({ carouselImages }: Readonly<CarouselProps>) {
   return (
-    <CarouselUI opts={{ loop: true }} plugins={[Autoplay({ delay: 5000 })]} className="">
+    <CarouselUI opts={{ loop: true }} plugins={[Autoplay({ delay: 4000 })]}>
       <CarouselContent>
         {carouselImages.map(({ url, alt }) => (
-          <CarouselItem key={url} className="flex">
-            <Image src={url} alt={alt} width={800} height={600} priority />
+          <CarouselItem key={url}>
+            <Image src={url} alt={alt} width={800} height={600} priority className="h-full" />
           </CarouselItem>
         ))}
       </CarouselContent>
