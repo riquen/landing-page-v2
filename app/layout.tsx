@@ -31,7 +31,9 @@ export default function RootLayout({
     <html lang="en" className="antialiased">
       <body className={`${montserrat.variable} ${openSans.variable}`}>
         <Header />
-        <main className="min-h-dvh flex px-4 bg-sky-100 text-slate-950">{children}</main>
+        <main className="min-h-[calc(100dvh-64px)] mt-16 flex px-4 bg-sky-100 text-slate-950">
+          {children}
+        </main>
       </body>
     </html>
   )

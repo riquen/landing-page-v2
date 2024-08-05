@@ -6,7 +6,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col justify-evenly">
-      <h1 className="text-center text-3xl font-montserrat font-bold">WELCOME ABOARD!</h1>
+      <h2 className="text-center text-3xl font-montserrat font-bold">WELCOME ABOARD!</h2>
       <Carousel carouselImages={carouselImages} />
     </div>
   )
