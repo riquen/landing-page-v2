@@ -11,8 +11,8 @@ export default function Intro() {
       </p>
       <div className="flex justify-center flex-wrap gap-x-16">
         <Image src="/assets/svg/airplane.svg" alt="Airplane" width={100} height={100} />
-        <Image src="/assets/svg/helicopter.svg" alt="Airplane" width={100} height={100} />
-        <Image src="/assets/svg/drone.svg" alt="Airplane" width={100} height={100} />
+        <Image src="/assets/svg/helicopter.svg" alt="Helicopter" width={100} height={100} />
+        <Image src="/assets/svg/drone.svg" alt="Drone" width={100} height={100} />
       </div>
     </div>
   )

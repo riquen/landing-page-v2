@@ -2,8 +2,6 @@ import { ElementType } from 'react'
 
 import Link from 'next/link'
 
-import { CollapsibleTrigger } from '@/components/ui/collapsible'
-
 type NavItemProps = {
   href: string
   icon: ElementType

@@ -16,8 +16,6 @@ import {
 import { usePathname } from 'next/navigation'
 import { TbDrone } from 'react-icons/tb'
 
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
-
 import { NavItem } from './NavItem'
 
 export const Header = () => {
