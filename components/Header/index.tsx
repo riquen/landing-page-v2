@@ -16,14 +16,15 @@ import {
 import { usePathname } from 'next/navigation'
 import { TbDrone } from 'react-icons/tb'
 
-import { NavItem } from './NavItem'
+import { MenuItem } from './MenuItem'
+import { Menubar, MenubarContent, MenubarMenu, MenubarTrigger } from '../ui/menubar'
 
 export const Header = () => {
   const pathname = usePathname()
   const isHome = pathname === '/'
 
   return (
-    <Collapsible className="fixed left-0 right-0 top-0 z-20 flex flex-col gap-3 bg-sky-200 p-4 data-[state=open]:bottom-0 data-[state=closed]:border-b-2 data-[state=closed]:border-neutral-300">
+    <div className="flex justify-between bg-sky-200 p-4 border-b-2 border-neutral-300">
       <div className="flex justify-between">
         <Link href="/" className="flex outline-none">
           <LuTowerControl className="w-8 h-8 stroke-slate-950" />
@@ -33,21 +34,23 @@ export const Header = () => {
             <LuPlaneLanding className="w-8 h-8 stroke-slate-950" />
           )}
         </Link>
-        <CollapsibleTrigger className="outline-none" asChild>
-          <LuMenu className="w-8 h-8 stroke-slate-950" />
-        </CollapsibleTrigger>
       </div>
-      <CollapsibleContent className="data-[state=closed]:hidden" forceMount>
-        <nav className="flex flex-col mt-8 gap-2">
-          <NavItem href="/" icon={LuHome} title="Home" />
-          <NavItem href="intro" icon={LuFileText} title="Intro" />
-          <NavItem href="aircrafts" icon={LuPlane} title="Aircrafts" />
-          <NavItem href="uan" icon={TbDrone} title="UAN" />
-          <NavItem href="gallery" icon={LuImage} title="Gallery" />
-          <NavItem href="pricing" icon={LuDollarSign} title="Prices" />
-          <NavItem href="contact" icon={LuSmartphone} title="Contact" />
-        </nav>
-      </CollapsibleContent>
-    </Collapsible>
+      <Menubar>
+        <MenubarMenu>
+          <MenubarTrigger>
+            <LuMenu className="w-8 h-8 stroke-slate-950" />
+          </MenubarTrigger>
+          <MenubarContent>
+            <MenuItem href="/" icon={LuHome} title="Home" />
+            <MenuItem href="intro" icon={LuFileText} title="Intro" />
+            <MenuItem href="aircrafts" icon={LuPlane} title="Aircrafts" />
+            <MenuItem href="uan" icon={TbDrone} title="UAN" />
+            <MenuItem href="gallery" icon={LuImage} title="Gallery" />
+            <MenuItem href="pricing" icon={LuDollarSign} title="Prices" />
+            <MenuItem href="contact" icon={LuSmartphone} title="Contact" />
+          </MenubarContent>
+        </MenubarMenu>
+      </Menubar>
+    </div>
   )
 }
