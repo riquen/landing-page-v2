@@ -1,9 +1,11 @@
 import Image from 'next/image'
 
+import PageTitle from '@/components/PageTitle'
+
 export default function Intro() {
   return (
     <div className="flex flex-col justify-evenly bg-gradient-to-b from-sky-300 via-pink-300 to-amber-300 -mx-4 px-4">
-      <h2 className="text-center text-3xl font-montserrat font-bold">WHAT IS AN AIRCRAFT?</h2>
+      <PageTitle>WHAT IS AN AIRCRAFT?</PageTitle>
       <p className="text-center font-open-sans">
         An aircraft is a vehicle that is able to fly by gaining support from the air. It counters
         the force of gravity by using either static lift or by using the dynamic lift of an airfoil,

@@ -17,7 +17,7 @@ import { usePathname } from 'next/navigation'
 import { TbDrone } from 'react-icons/tb'
 
 import { MenuItem } from './MenuItem'
-import { Menubar, MenubarContent, MenubarMenu, MenubarTrigger } from '../ui/menubar'
+import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent } from '../ui/menubar'
 
 export const Header = () => {
   const pathname = usePathname()
