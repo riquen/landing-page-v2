@@ -1,8 +1,10 @@
 import Image from 'next/image'
 
 import PageTitle from '@/components/PageTitle'
+import { getIntro } from '@/sanity/sanity-utils'
 
 export default function Intro() {
+  getIntro()
   return (
     <div className="flex flex-col justify-evenly bg-gradient-to-b from-sky-300 via-pink-300 to-amber-300 -mx-4 px-4">
       <PageTitle>WHAT IS AN AIRCRAFT?</PageTitle>
