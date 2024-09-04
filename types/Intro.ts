@@ -5,6 +5,7 @@ export type Intro = {
 }
 
 export type Icon = {
+  _key: string
   url: string
   alt: string
 }

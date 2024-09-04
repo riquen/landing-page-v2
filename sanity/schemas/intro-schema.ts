@@ -19,20 +19,15 @@ const intro = {
       type: 'array',
       of: [
         {
-          type: 'object',
+          name: 'icon',
+          title: 'Icon',
+          type: 'image',
+          options: { hotspot: true },
           fields: [
             {
-              name: 'icon',
-              title: 'Icon',
-              type: 'image',
-              options: { hotspot: true },
-              fields: [
-                {
-                  name: 'alt',
-                  title: 'Alt',
-                  type: 'string',
-                },
-              ],
+              name: 'alt',
+              title: 'Alt',
+              type: 'string',
             },
           ],
         },

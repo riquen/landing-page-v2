@@ -14,9 +14,16 @@ export default function Carousel({ carouselImages }: Readonly<CarouselProps>) {
   return (
     <CarouselUI opts={{ loop: true }} plugins={[Autoplay({ delay: 4000 })]}>
       <CarouselContent>
-        {carouselImages.map(({ url, alt }) => (
-          <CarouselItem key={url}>
-            <Image src={url} alt={alt} width={800} height={600} priority className="h-full" />
+        {carouselImages.map(({ _key, image }) => (
+          <CarouselItem key={_key}>
+            <Image
+              src={image.url}
+              alt={image.alt}
+              width={800}
+              height={600}
+              priority
+              className="h-full"
+            />
           </CarouselItem>
         ))}
       </CarouselContent>

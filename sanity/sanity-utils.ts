@@ -9,6 +9,7 @@ export async function getCarouselImages(): Promise<CarouselImage[]> {
   const response = await createClient(clientConfig).fetch(
     groq`*[_type == "gallery"]{
       images[0...5]{
+        _key,
         image{
           "url": asset->url,
           alt,
@@ -16,9 +17,7 @@ export async function getCarouselImages(): Promise<CarouselImage[]> {
       }
     }`,
   )
-  const data = response[0].images.map((item: { image: CarouselImage }) => item.image)
-
-  return data
+  return response[0].images
 }
 
 export async function getIntro(): Promise<Intro> {
@@ -27,12 +26,11 @@ export async function getIntro(): Promise<Intro> {
       title,
       description,
       icons[0...3]{
-        icon{
-          "url": asset->url,
-          alt,
-        }
+        _key,
+        "url": asset->url,
+        alt,
       }
     }`,
   )
-  console.log(response[0])
+  return response[0]
 }

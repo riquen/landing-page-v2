@@ -1,5 +1,7 @@
-import { defineConfig } from 'sanity'
+import { defineConfig, isDev } from 'sanity'
 import { structureTool } from 'sanity/structure'
+
+import { visionTool } from '@sanity/vision'
 
 import schemas from './sanity/schemas'
 
@@ -9,7 +11,7 @@ const config = defineConfig({
   title: 'Landing Page v2',
   apiVersion: '2024-07-24',
   basePath: '/admin',
-  plugins: [structureTool()],
+  plugins: isDev ? [structureTool(), visionTool()] : [structureTool()],
   schema: { types: schemas },
 })
 
