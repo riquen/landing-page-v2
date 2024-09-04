@@ -7,7 +7,7 @@ export default async function Intro() {
   const { title, description, icons } = await getIntro()
 
   return (
-    <div className="flex flex-col justify-evenly bg-gradient-to-b from-sky-300 via-pink-300 to-amber-300 -mx-4 px-4">
+    <div className="flex flex-col justify-evenly -mx-4 px-4 bg-gradient-to-b from-sky-300 via-pink-300 to-amber-300">
       <PageTitle>{title}</PageTitle>
       <p className="text-center font-open-sans">{description}</p>
       <div className="flex justify-center flex-wrap gap-x-16">
