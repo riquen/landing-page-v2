@@ -2,9 +2,10 @@ import Image from 'next/image'
 
 import PageTitle from '@/components/PageTitle'
 import { getIntro } from '@/sanity/sanity-utils'
+import { Intro as IntroType } from '@/types/Intro'
 
-export default async function Intro() {
-  const { title, description, icons } = await getIntro()
+export default function Intro({ introData }: { introData: IntroType }) {
+  const { title, description, icons } = introData
 
   return (
     <div className="flex flex-col justify-evenly -mx-4 px-4 bg-gradient-to-b from-sky-300 via-pink-300 to-amber-300">
@@ -17,4 +18,14 @@ export default async function Intro() {
       </div>
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const introData = await getIntro()
+
+  return {
+    props: {
+      introData,
+    },
+  }
 }

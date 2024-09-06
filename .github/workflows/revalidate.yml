@@ -1,0 +1,16 @@
+name: Revalidate Pages
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  revalidate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Fazer Requisição para Revalidar Páginas
+        run: |
+          curl -X POST "https://landing-page-v2-gamma.vercel.app/api/revalidate" \
+          -H "Content-Type: application/json" \
+          -d '{"paths": ["/", "/intro"]}'
