@@ -2,6 +2,7 @@ import { createClient, groq } from 'next-sanity'
 
 import { CarouselImage } from '@/types/CarouselImage'
 import { Intro } from '@/types/Intro'
+import { Aircrafts } from '@/types/Aircrafts'
 
 import clientConfig from './config/client-config'
 
@@ -33,4 +34,14 @@ export async function getIntro(): Promise<Intro> {
     }`,
   )
   return response[0]
+}
+
+export async function getAircrafts(): Promise<Aircrafts[]> {
+  const response = await createClient(clientConfig).fetch(
+    groq`*[_type == "aircrafts"]{
+      title,
+      description,
+    }`,
+  )
+  return response
 }
