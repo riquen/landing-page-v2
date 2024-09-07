@@ -3,6 +3,7 @@ import { createClient, groq } from 'next-sanity'
 import { CarouselImage } from '@/types/CarouselImage'
 import { Intro } from '@/types/Intro'
 import { Aircrafts } from '@/types/Aircrafts'
+import { Uan } from '@/types/Uan'
 
 import clientConfig from './config/client-config'
 
@@ -44,4 +45,15 @@ export async function getAircrafts(): Promise<Aircrafts[]> {
     }`,
   )
   return response
+}
+
+export async function getUan(): Promise<Uan> {
+  const response = await createClient(clientConfig).fetch(
+    groq`*[_type == "uan"]{
+      title,
+      description,
+      itens,
+    }`,
+  )
+  return response[0]
 }

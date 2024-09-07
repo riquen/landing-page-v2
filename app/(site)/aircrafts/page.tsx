@@ -1,4 +1,5 @@
 import PageTitle from '@/components/PageTitle'
+import Description from '@/components/Description'
 import { getAircrafts } from '@/sanity/sanity-utils'
 
 export default async function Aircrafts() {
@@ -12,7 +13,7 @@ export default async function Aircrafts() {
       {aircrafts.map(({ title, description }) => (
         <div key={title}>
           <PageTitle>{title}</PageTitle>
-          <p className="text-center font-open-sans">{description}</p>
+          <Description>{description}</Description>
         </div>
       ))}
     </div>
