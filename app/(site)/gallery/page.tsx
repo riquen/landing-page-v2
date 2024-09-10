@@ -1,10 +1,17 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import Description from '@/components/Description'
 import PageTitle from '@/components/PageTitle'
 import { getGallery } from '@/sanity/sanity-utils'
+import { ImageModal } from '@/components/ImageModal'
 
-export default async function Gallery() {
+type SearchParamProps = {
+  searchParams: Record<string, string> | null | undefined
+}
+
+export default async function Gallery({ searchParams }: Readonly<SearchParamProps>) {
+  const show = searchParams?.show
   const gallery = await getGallery()
   const { title, description, images } = gallery
 
@@ -21,7 +28,11 @@ export default async function Gallery() {
           }).format(price)
 
           return (
-            <div key={_key} className="rounded-lg shadow-lg overflow-hidden">
+            <Link
+              key={_key}
+              href={`/gallery?show=true&key=${_key}`}
+              className="rounded-lg shadow-lg overflow-hidden cursor-pointer group outline-none"
+            >
               <Image
                 src={image.url}
                 alt={image.alt}
@@ -29,19 +40,19 @@ export default async function Gallery() {
                 height={1080}
                 priority={index < 3}
                 className="md:h-64"
-                sizes="(min-width: 64rem) 35vw,(min-width: 48rem) 50vw, 100vw"
               />
-              <div className="py-4 text-center bg-white">
+              <div className="py-4 text-center bg-white group-active:bg-sky-100">
                 <h3 className="text-lg md:text-2xl font-montserrat font-bold">{imageTitle}</h3>
                 <p className="font-open-sans">{formattedPrice}</p>
               </div>
-            </div>
+            </Link>
           )
         })}
       </div>
       <p className="font-open-sans text-xs md:text-base italic text-right">
         Values may be out of date
       </p>
+      {show && <ImageModal images={images} />}
     </div>
   )
 }

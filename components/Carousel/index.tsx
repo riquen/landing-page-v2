@@ -48,7 +48,6 @@ export default function Carousel({ carouselImages }: Readonly<CarouselProps>) {
                 height={1080}
                 priority={index === 0}
                 className="h-full mx-auto lg:w-[800px] lg:h-[600px]"
-                sizes="(min-width: 64rem) 35vw,(min-width: 48rem) 50vw, 100vw"
               />
             </CarouselItem>
           ))}
@@ -57,8 +56,8 @@ export default function Carousel({ carouselImages }: Readonly<CarouselProps>) {
       <div className="flex justify-center mt-4">
         {Array.from({ length: count }).map((_, index) => (
           <button
-            key={index}
-            className={`mx-2 w-3 h-3 rounded-full ${
+            key={index + 1}
+            className={`outline-none mx-2 w-3 h-3 rounded-full ${
               index + 1 === current ? 'bg-sky-400 hover:bg-sky-400' : 'bg-sky-300'
             }`}
             onClick={() => api?.scrollTo(index)}
