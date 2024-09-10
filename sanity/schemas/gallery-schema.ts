@@ -39,6 +39,11 @@ const gallery = {
               title: 'Title',
               type: 'string',
             },
+            {
+              name: 'price',
+              title: 'Price',
+              type: 'number',
+            },
           ],
         },
       ],

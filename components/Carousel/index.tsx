@@ -1,9 +1,16 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 import Image from 'next/image'
 import Autoplay from 'embla-carousel-autoplay'
 
-import { Carousel as CarouselUI, CarouselContent, CarouselItem } from '@/components/ui/carousel'
+import {
+  Carousel as CarouselUI,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from '@/components/ui/carousel'
 import { CarouselImage } from '@/types/CarouselImage'
 
 type CarouselProps = {
@@ -11,22 +18,53 @@ type CarouselProps = {
 }
 
 export default function Carousel({ carouselImages }: Readonly<CarouselProps>) {
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    if (!api) {
+      return
+    }
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
+  }, [api])
+
   return (
-    <CarouselUI opts={{ loop: true }} plugins={[Autoplay({ delay: 4000 })]}>
-      <CarouselContent>
-        {carouselImages.map(({ _key, image }) => (
-          <CarouselItem key={_key}>
-            <Image
-              src={image.url}
-              alt={image.alt}
-              width={800}
-              height={600}
-              priority
-              className="h-full"
-            />
-          </CarouselItem>
+    <div>
+      <CarouselUI setApi={setApi} opts={{ loop: true }} plugins={[Autoplay({ delay: 5000 })]}>
+        <CarouselContent>
+          {carouselImages.map(({ _key, image }, index) => (
+            <CarouselItem key={_key}>
+              <Image
+                src={image.url}
+                alt={image.alt}
+                width={1920}
+                height={1080}
+                priority={index === 0}
+                className="h-full mx-auto lg:w-[800px] lg:h-[600px]"
+                sizes="(min-width: 64rem) 35vw,(min-width: 48rem) 50vw, 100vw"
+              />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </CarouselUI>
+      <div className="flex justify-center mt-4">
+        {Array.from({ length: count }).map((_, index) => (
+          <button
+            key={index}
+            className={`mx-2 w-3 h-3 rounded-full ${
+              index + 1 === current ? 'bg-sky-400 hover:bg-sky-400' : 'bg-sky-300'
+            }`}
+            onClick={() => api?.scrollTo(index)}
+          />
         ))}
-      </CarouselContent>
-    </CarouselUI>
+      </div>
+    </div>
   )
 }

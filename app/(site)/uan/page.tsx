@@ -12,7 +12,7 @@ export default async function Uan() {
       <div className="flex flex-col gap-6 mt-4">
         {itens.map((item) => (
           <div key={item.title}>
-            <h3 className="text-lg font-montserrat font-bold">{item.title}</h3>
+            <h3 className="text-xl md:text-2xl font-montserrat font-bold">{item.title}</h3>
             <p className="font-open-sans">{item.description}</p>
           </div>
         ))}

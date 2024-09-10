@@ -4,6 +4,7 @@ import { CarouselImage } from '@/types/CarouselImage'
 import { Intro } from '@/types/Intro'
 import { Aircrafts } from '@/types/Aircrafts'
 import { Uan } from '@/types/Uan'
+import { Gallery } from '@/types/Gallery'
 
 import clientConfig from './config/client-config'
 
@@ -53,6 +54,25 @@ export async function getUan(): Promise<Uan> {
       title,
       description,
       itens,
+    }`,
+  )
+  return response[0]
+}
+
+export async function getGallery(): Promise<Gallery> {
+  const response = await createClient(clientConfig).fetch(
+    groq`*[_type == "gallery"]{
+      title,
+      description,
+      images[]{
+        _key,
+        title,
+        price,
+        image{
+          "url": asset->url,
+          alt,
+        }
+      }
     }`,
   )
   return response[0]
